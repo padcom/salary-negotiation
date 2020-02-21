@@ -37,8 +37,11 @@ export default Vue.extend({
     async fetchLondonTemperature() {
       return new WeatherService().getTemperatureForCity('London, uk');
     },
-    show() {
-      this.$refs.dialog.showModal();
+    async showModal() {
+      return new Promise((resolve) => {
+        this.$refs.dialog.addEventListener('close', resolve, { once: true });
+        this.$refs.dialog.showModal();
+      });
     },
     close() {
       this.$refs.dialog.close();

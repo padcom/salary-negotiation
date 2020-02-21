@@ -56,10 +56,17 @@ export default Vue.extend({
       this.employerSubmitted = true;
       this.displayResult();
     },
-    displayResult() {
+    async displayResult() {
       if (this.bothAnswersSubmitted) {
-        this.$refs.dialog.show();
+        await this.$refs.dialog.showModal();
+        this.clear();
       }
+    },
+    clear() {
+      this.employeeSubmitted = false;
+      this.employeeSalaryExpectation = '';
+      this.employerSubmitted = false;
+      this.employerSalaryExpectation = '';
     },
   },
   computed: {
