@@ -19,6 +19,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
+  name: 'SalaryEditor',
   props: {
     value: { type: [Number, String], required: true },
     title: { type: String, required: false, default: 'Enter salary' },

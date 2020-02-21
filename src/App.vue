@@ -4,14 +4,14 @@
       { id: 'employee', caption: 'Employee' },
       { id: 'employer', caption: 'Employer' },
     ]">
-      <SalaryEditor slot="employee"
+      <SalaryEditor key="employee" slot="employee"
         class="tab employee-tab"
         title="Enter minumum offer"
         v-model="employeeSalaryExpectation"
         :hide="employeeSubmitted"
         @input="submitEmployeeSalary"
       />
-      <SalaryEditor slot="employer"
+      <SalaryEditor key="employer" slot="employer"
         class="tab employer-tab"
         title="Enter maximum offer"
         v-model="employerSalaryExpectation"

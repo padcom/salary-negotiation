@@ -2,15 +2,15 @@
   <div class="tabs">
     <div class="tabs__actuators">
       <button v-for="tab in tabs" :key="tab.id"
-        @click="currentTab = tab.id"
+        @click="activateTab(tab.id)"
         :class="[ 'tabs__actuator', `tabs__actuator-${tab.id}`, {
           'tabs__actuator--active': currentTab === tab.id,
           'tabs__actuator--inactive': currentTab !== tab.id,
         } ]">
-        Employee
+        {{ tab.caption }}
       </button>
     </div>
-    <div class="tabs__content">
+    <div ref="content" class="tabs__content">
       <slot :name="currentTab">Empty</slot>
     </div>
   </div>
@@ -24,7 +24,7 @@ import Vue from 'vue';
 // Therefore there's no v-model support in this component.
 
 export default Vue.extend({
-  name: 'HelloWorld',
+  name: 'Tabs',
   props: {
     tabs: { type: Array, require: true },
   },
@@ -32,6 +32,22 @@ export default Vue.extend({
     return {
       currentTab: this.tabs.length > 0 ? this.tabs[0].id : '',
     };
+  },
+  mounted() {
+    this.activateFirstFoundInputInContent();
+  },
+  methods: {
+    activateFirstFoundInputInContent() {
+      const input = this.$refs.content.querySelector('input');
+      if (input) {
+        input.focus();
+      }
+    },
+    async activateTab(id) {
+      this.currentTab = id;
+      await Vue.nextTick();
+      this.activateFirstFoundInputInContent();
+    },
   },
 });
 </script>
