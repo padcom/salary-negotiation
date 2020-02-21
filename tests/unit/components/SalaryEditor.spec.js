@@ -33,4 +33,12 @@ describe('SalaryEditor', () => {
     expect(wrapper.emitted().input.length).toEqual(1);
     expect(wrapper.emitted().input[0][0]).toEqual(333);
   });
+
+  it('will hide content if hide is set to true', () => {
+    const wrapper = shallowMount(SalaryEditor, {
+      propsData: { value: 123, hide: true },
+    });
+    expect(wrapper.find('.salary-editor__expectation').exists()).toEqual(false);
+    expect(wrapper.find('.salary-editor__submit').exists()).toEqual(false);
+  });
 });
