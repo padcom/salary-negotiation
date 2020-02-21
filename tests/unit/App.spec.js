@@ -1,31 +1,7 @@
-import Vue from 'vue';
 import { shallowMount } from '@vue/test-utils';
 import App from '@/App.vue';
 
 describe('App', () => {
-  it('will initially show employee tabs', () => {
-    const wrapper = shallowMount(App);
-    expect(wrapper.vm.currentTab).toMatch('employee');
-    expect(wrapper.find('.employee-tab').isVisible()).toBeTruthy();
-    expect(wrapper.find('.employer-tab').exists()).toBeFalsy();
-  });
-  it('will show employer tab when requested', async () => {
-    const wrapper = shallowMount(App);
-    wrapper.find('.employer-tab-actuator').trigger('click');
-    await Vue.nextTick();
-    expect(wrapper.vm.currentTab).toMatch('employer');
-    expect(wrapper.find('.employee-tab').exists()).toBeFalsy();
-    expect(wrapper.find('.employer-tab').isVisible()).toBeTruthy();
-  });
-  it('will show employee tab after switching through employer tab', async () => {
-    const wrapper = shallowMount(App);
-    wrapper.find('.employer-tab-actuator').trigger('click');
-    wrapper.find('.employee-tab-actuator').trigger('click');
-    await Vue.nextTick();
-    expect(wrapper.find('.employee-tab').isVisible()).toBeTruthy();
-    expect(wrapper.find('.employer-tab').exists()).toBeFalsy();
-  });
-
   [
     { employee: 122, employer: 122, success: true },
     { employee: 121, employer: 122, success: true },

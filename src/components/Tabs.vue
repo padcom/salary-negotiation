@@ -19,6 +19,10 @@
 <script>
 import Vue from 'vue';
 
+// For the purposes of this application it is not necessary
+// neither propagate not set the current tab from outside.
+// Therefore there's no v-model support in this component.
+
 export default Vue.extend({
   name: 'HelloWorld',
   props: {
