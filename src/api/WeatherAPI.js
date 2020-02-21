@@ -7,13 +7,8 @@ export default class WeatherAPI {
     this.key = key;
   }
 
-  async getWeatherForCity(city, units = 'metric') {
-    console.log('1');
+  async getDataForCity(city, units = 'metric') {
     const response = await fetch(`${this.root}?q=${city}&appid=${this.key}&units=${units}`);
-    console.log('2', response);
-    const data = await response.json();
-    console.log('3', data);
-
-    return data.main;
+    return response.json();
   }
 }

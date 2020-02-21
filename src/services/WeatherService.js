@@ -7,8 +7,9 @@ export default class WeatherService {
 
   async getTemperatureForCity(city, units = 'metric') {
     try {
-      const data = await this.api.getWeatherForCity(city, units);
-      return data.temp;
+      const data = await this.api.getDataForCity(city, units);
+      console.log('data', data);
+      return data.main.temp;
     } catch (e) {
       throw new Error(`Unable to retrieve temperature for ${city}: ${e.message}`);
     }
